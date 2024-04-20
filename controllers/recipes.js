@@ -2,6 +2,7 @@ const recipes = require('../models/recipe');
 const recipeService = require('../services/recipe');
 const crypto = require('crypto')
 
+/* 
 // Controller de exemplo
 async function getTest(req, res) {
   const data = await recipeService.getTest();
@@ -19,7 +20,7 @@ async function setTest(req, res) {
     res.sendStatus(500);
   }
 }
-
+*/
 async function createRecipe(req, res) {
   
   data = req.body
@@ -27,7 +28,7 @@ async function createRecipe(req, res) {
   recipes.create(crypto.randomUUID(), data)
   
   console.log("Recitas salvas", recipes.getRecipes())
-  const recipeSaved = await recipeService.setTest(JSON.stringify(recipes.getRecipes()))
+  const recipeSaved = await recipeService.setRecipe(JSON.stringify(recipes.getRecipes()))
 
   recipeSaved ? res.sendStatus(200) : res.sendStatus(500);
 }
@@ -42,7 +43,8 @@ async function searchRecipe(req, res) {
 
 
 async function readAllRecipe(req, res) {
-  res.sendStatus(200)
+  const data = await recipeService.getRecipe();
+  res.end(data)
 }
 
 
@@ -50,4 +52,4 @@ async function editRecipe(req, res) {
   res.sendStatus(200)
 }
 
-module.exports = { getTest, setTest, createRecipe, searchRecipe, deleteRecipe, editRecipe, readAllRecipe };
+module.exports = {createRecipe, searchRecipe, deleteRecipe, editRecipe, readAllRecipe };
