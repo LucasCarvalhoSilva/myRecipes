@@ -5,8 +5,20 @@ let recipes = []
 module.exports = {
 
     async populate() {
-        const data = await recipeService.getRecipe();
-        recipes = JSON.parse(data)
+        try {
+            const data = await recipeService.getRecipe();
+            
+            // Verifica se os dados retornados estão vazios ou incompletos
+            if (Object.keys(data).length === 0) {
+              console.warn('Warning: Empty or incomplete JSON data. Skipping population.');
+              return;
+            }
+        
+            recipes = JSON.parse(data);
+        } catch (error) {
+            console.error('Error: services/recipe/populate()', error.message);
+            recipes = [];
+        }
     },
 
     create(id, data) {
