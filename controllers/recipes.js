@@ -29,7 +29,7 @@ async function createRecipe(req, res) {
   console.log("Recitas salvas", recipes.getRecipes())
   const recipeSaved = await recipeService.setTest(JSON.stringify(recipes.getRecipes()))
 
-  res.sendStatus(200);
+  recipeSaved ? res.sendStatus(200) : res.sendStatus(500);
 }
 
 async function deleteRecipe(req, res) { 
