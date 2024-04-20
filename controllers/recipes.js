@@ -1,4 +1,6 @@
+const recipes = require('../models/recipe');
 const recipeService = require('../services/recipe');
+const crypto = require('crypto')
 
 // Controller de exemplo
 async function getTest(req, res) {
@@ -19,6 +21,14 @@ async function setTest(req, res) {
 }
 
 async function createRecipe(req, res) {
+  
+  data = req.body
+
+  recipes.create(crypto.randomUUID(), data)
+  
+  console.log("Recitas salvas", recipes.getRecipes())
+  const recipeSaved = await recipeService.setTest(JSON.stringify(recipes.getRecipes()))
+
   res.sendStatus(200);
 }
 
