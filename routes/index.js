@@ -6,4 +6,11 @@ const router = Router();
 router.get('/', recipesController.getTest);
 router.post('/', recipesController.setTest);
 
+// Rotas de receita
+router.post('/recipe', recipesController.createRecipe)
+router.delete('/recipe/:id', recipesController.deleteRecipe)
+router.get('/recipe/:id', recipesController.searchRecipe)
+router.get('recipe/?category', recipesController.readAllRecipe)
+router.put('recipe/:id', recipesController.editRecipe)
+
 module.exports = router;

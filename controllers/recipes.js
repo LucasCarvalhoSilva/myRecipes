@@ -18,4 +18,26 @@ async function setTest(req, res) {
   }
 }
 
-module.exports = { getTest, setTest };
+async function createRecipe(req, res) {
+  res.sendStatus(200);
+}
+
+async function deleteRecipe(req, res) { 
+  res.sendStatus(200)
+}
+
+async function searchRecipe(req, res) {
+  res.sendStatus(200)
+}
+
+
+async function readAllRecipe(req, res) {
+  res.sendStatus(200)
+}
+
+
+async function editRecipe(req, res) {
+  res.sendStatus(200)
+}
+
+module.exports = { getTest, setTest, createRecipe, searchRecipe, deleteRecipe, editRecipe, readAllRecipe };
