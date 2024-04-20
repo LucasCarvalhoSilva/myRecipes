@@ -22,7 +22,6 @@ async function setTest(req, res) {
 }
 */
 async function createRecipe(req, res) {
-  
   data = req.body
 
   recipes.create(crypto.randomUUID(), data)
@@ -43,11 +42,16 @@ async function deleteRecipe(req, res) {
 }
 
 async function searchRecipe(req, res) {
-  res.sendStatus(200)
+  const {id} = req.params
+
+  const recipeFound = await recipes.search(id)
+  console.log(recipeFound)
+  res.end(JSON.stringify(recipeFound))
 }
 
 
 async function readAllRecipe(req, res) {
+  
   const data = await recipeService.getRecipe();
   res.end(data)
 }

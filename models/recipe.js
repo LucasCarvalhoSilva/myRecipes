@@ -1,13 +1,12 @@
+const recipeService = require('../services/recipe');
+
 let recipes = []
 
 module.exports = {
 
-    constructor() {
-
-    },
-
-    persist() {
-
+    async populate() {
+        const data = await recipeService.getRecipe();
+        recipes = JSON.parse(data)
     },
 
     create(id, data) {
@@ -24,8 +23,15 @@ module.exports = {
         //console.log(recipes)
     },
 
-    search(id) {
-        return recipes.filter( recipe => recipe.id === id)
+    async search(id) {
+        let recipe
+        //await this.populate()
+        //.then(
+            recipe = recipes.filter( recipe => recipe.id == id)
+        //)
+        
+        return recipe
+        
     },
 
     update(id, data) {
@@ -37,7 +43,7 @@ module.exports = {
             ingredients: data.ingredients,
             methodOfPreparation: data.methodOfPreparation
         }
-
+        
         for(let i = 0; i < recipes.length ; i++) {
             if(recipes[i].id == id) {
                 recipes[i] = recipe

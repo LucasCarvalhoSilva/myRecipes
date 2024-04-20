@@ -3,6 +3,7 @@ const mustache = require('mustache-express');
 const path = require('path');
 
 const router = require('./routes');
+const recipe = require('./models/recipe');
 
 const port = process.env.PORT || 3000;
 
@@ -16,6 +17,8 @@ server.set('view engine', 'mustache');
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(router);
+
+recipe.populate()
 
 server.listen(port, () => {
   console.info(`Listening on http://localhost:${port}`);
