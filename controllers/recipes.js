@@ -67,9 +67,17 @@ async function searchRecipe(req, res) {
 
 
 async function readAllRecipe(req, res) {
-  
-  const data = await recipeService.getRecipe();
-  res.end(data)
+  try {
+    const data = await recipeService.getRecipe();
+    if (Object.keys(data).length === 0) {
+      return res.end("");
+    }
+    const jsonData = JSON.stringify(data);
+    res.end(jsonData);
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).send('Internal Server Error');
+  }
 }
 
 
