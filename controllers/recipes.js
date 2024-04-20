@@ -33,8 +33,15 @@ async function createRecipe(req, res) {
   recipeSaved ? res.sendStatus(200) : res.sendStatus(500);
 }
 
-async function deleteRecipe(req, res) { 
-  res.sendStatus(200)
+async function deleteRecipe(req, res) {
+  const {id} = req.params
+
+  console.log(id)
+  recipes.delete(id)
+
+  const recipeSaved = await recipeService.setRecipe(JSON.stringify(recipes.getRecipes()))
+
+  recipeSaved ? res.sendStatus(200) : res.sendStatus(500);
 }
 
 async function searchRecipe(req, res) {

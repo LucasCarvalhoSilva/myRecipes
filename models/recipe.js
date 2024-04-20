@@ -46,7 +46,7 @@ module.exports = {
     },
 
     delete(id) {
-        const updatedRecipes = recipes.filter( recipe => recipe.id !== id)
+        const updatedRecipes = recipes.filter( recipe => recipe.id != id)
 
         recipes = updatedRecipes
     },
