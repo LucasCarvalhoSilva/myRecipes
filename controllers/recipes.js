@@ -35,8 +35,6 @@ async function createRecipe(req, res) {
 
 async function deleteRecipe(req, res) {
   const {id} = req.params
-
-  console.log(id)
   recipes.delete(id)
 
   const recipeSaved = await recipeService.setRecipe(JSON.stringify(recipes.getRecipes()))
@@ -56,7 +54,13 @@ async function readAllRecipe(req, res) {
 
 
 async function editRecipe(req, res) {
-  res.sendStatus(200)
+  const {id} = req.params
+  const data = req.body
+
+  recipes.update(id,data)
+  const recipeSaved = await recipeService.setRecipe(JSON.stringify(recipes.getRecipes()))
+
+  recipeSaved ? res.sendStatus(200) : res.sendStatus(500);
 }
 
 module.exports = {createRecipe, searchRecipe, deleteRecipe, editRecipe, readAllRecipe };

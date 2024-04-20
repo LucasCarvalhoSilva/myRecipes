@@ -38,8 +38,8 @@ module.exports = {
             methodOfPreparation: data.methodOfPreparation
         }
 
-        for(let i = 0; i < recipes.length() ; i++) {
-            if(recipes[i].id === id) {
+        for(let i = 0; i < recipes.length ; i++) {
+            if(recipes[i].id == id) {
                 recipes[i] = recipe
             }
         }
