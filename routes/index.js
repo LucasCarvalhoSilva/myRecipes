@@ -14,8 +14,8 @@ router.delete('/recipe/:id', recipesController.deleteRecipe)
 router.get('/recipe/:id', recipesController.searchRecipe)
 router.get('/recipe/', recipesController.readAllRecipe)
 router.put('/recipe/:id', recipesController.editRecipe)
-// router.get('/recipe/category/:category', recipesController.readByCategory)
-// router.get('/recipe/sort/recents', recipesController.sortByDate)
+router.get('/recipe/category/:category', recipesController.readByCategory)
+router.get('/recipe/sort/recents', recipesController.sortByDate)
 
 
 // Rotas de usuario
